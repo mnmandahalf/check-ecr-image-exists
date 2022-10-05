@@ -1,0 +1,31 @@
+# action.yml
+name: 'Check if image exists'
+description: 'Check if specified tag image exists in your ECR repository'
+inputs:
+  region:
+    description: 'AWS region'
+    required: true
+  repository-name:
+    description: 'Repository name'
+    required: true
+  image-tag:
+    description: 'Image tag'
+    required: true
+  access-key-id:
+    description: 'AWS access key id'
+    required: false 
+  secret-access-key:
+    description: 'AWS secret access kry'
+    required: false
+outputs:
+  exists_image:
+    description: 'Flag for check if image exists'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.region }}
+    - ${{ inputs.repository-name }}
+    - ${{ inputs.image-tag }}
+    - ${{ inputs.access-key-id }}
+    - ${{ inputs.secret-access-key }}
