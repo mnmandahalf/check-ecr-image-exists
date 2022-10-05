@@ -1,5 +1,5 @@
 # action.yml
-name: 'Check if image exists'
+name: 'Check if Docker image with tag exists in ECR'
 description: 'Check if specified tag image exists in your ECR repository'
 inputs:
   region:
