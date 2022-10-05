@@ -1,9 +1,11 @@
-# Hello world docker action
+# Check if a Docker image with a specific tag exists in ECR
 
-This action returns whether your specified image exists in your Amazon ECR repository.
+This action returns whether a Docker image with a specific tag exists in your Amazon ECR repository.
 
-## Inputs
+## Usage
+see [action.yml](https://github.com/mnmandahalf/github-actions-ecr-image-exists/blob/main/action.yml)
 
-## Outputs
-
-## Example usage
+## Output
+| Name | Description | Default |
+| - | - | - |
+| `image-exists` | Flag indicating whether the docker image exists or not. Returns `'0'` or `'1'` | N/A |

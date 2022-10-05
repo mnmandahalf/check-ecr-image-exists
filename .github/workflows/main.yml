@@ -17,4 +17,4 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Get the output
-        run: echo "image_exists=${{ steps.test.outputs.image_exists }}"
+        run: echo "image-exists=${{ steps.test.outputs.image_exists }}"

@@ -18,8 +18,8 @@ inputs:
     description: 'AWS secret access kry'
     required: false
 outputs:
-  exists_image:
-    description: 'Flag for check if image exists'
+  image-exists:
+    description: 'Flag indicating whether the docker image exists or not'
 runs:
   using: 'docker'
   image: 'Dockerfile'
