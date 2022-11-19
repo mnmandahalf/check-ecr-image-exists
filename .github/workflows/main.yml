@@ -8,6 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: test my action - expect image to exist
+        id: test-exists
         uses: ./
         with:
           region: ap-northeast-1
@@ -15,7 +16,12 @@ jobs:
           image-tag: ${{ secrets.IMAGE_TAG }}
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Get the output
+        run: echo "image-exists=${{ steps.test-exists.outputs.image-exists }}"
+
       - name: test my action - expect image not to exist
+        id: test-doesnt-exist
         uses: ./
         with:
           region: ap-northeast-1
@@ -23,5 +29,6 @@ jobs:
           image-tag: "dummy"
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
       - name: Get the output
-        run: echo "image-exists=${{ steps.test.outputs.image-exists }}"
+        run: echo "image-exists=${{ steps.test-doesnt-exist.outputs.image-exists }}"
