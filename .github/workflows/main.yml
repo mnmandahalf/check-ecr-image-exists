@@ -7,13 +7,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: test my action 
+      - name: test my action - expect image to exist
         uses: ./
-        id: test 
         with:
           region: ap-northeast-1
-          repository-name: ${{ secrets.ECR_REPOSITORY_NAME}}
+          repository-name: ${{ secrets.ECR_REPOSITORY_NAME }}
           image-tag: ${{ secrets.IMAGE_TAG }}
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: test my action - expect image not to exist
+        uses: ./
+        with:
+          region: ap-northeast-1
+          repository-name: ${{ secrets.ECR_REPOSITORY_NAME }}
+          image-tag: "dummy"
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Get the output
