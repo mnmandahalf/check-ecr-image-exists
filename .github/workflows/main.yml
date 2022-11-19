@@ -35,7 +35,7 @@ jobs:
 
       - name: test my action - expect image to exist
         id: test-exists2
-        uses: mnmandahalf/github-actions-check-ecr-image-exists@v0.1.1
+        uses: mnmandahalf/check-ecr-image-exists@v0.1.1
         with:
           region: ap-northeast-1
           repository-name: ${{ secrets.ECR_REPOSITORY_NAME }}
@@ -48,7 +48,7 @@ jobs:
 
       - name: test my action - expect image not to exist
         id: test-doesnt-exist2
-        uses: mnmandahalf/github-actions-check-ecr-image-exists@v0.1.1
+        uses: mnmandahalf/check-ecr-image-exists@v0.1.1
         with:
           region: ap-northeast-1
           repository-name: ${{ secrets.ECR_REPOSITORY_NAME }}
