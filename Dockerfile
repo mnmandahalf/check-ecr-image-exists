@@ -1,8 +1,8 @@
 FROM golang:1.19.2-alpine
 
-ENV GOPATH=
+WORKDIR /app
 
-COPY . .
+COPY . /app
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
