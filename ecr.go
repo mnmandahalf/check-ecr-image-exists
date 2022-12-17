@@ -47,21 +47,26 @@ func configure(awsAccessKeyID *string, awsSecretAccessKey *string, region *strin
 
 func checkImageExists(cfg *aws.Config, repositoryName *string, imageTag *string) {
 	svc := ecr.NewFromConfig(*cfg)
-	out, err := svc.ListImages(
-		context.TODO(),
+	paginator := ecr.NewListImagesPaginator(
+		svc,
 		&ecr.ListImagesInput{
 			RepositoryName: repositoryName,
 		},
 	)
-	if err != nil {
-		log.Fatal(err)
-	}
-	for _, image := range out.ImageIds {
-		if *image.ImageTag == *imageTag {
-			fmt.Println("1")
-			return
+
+	for paginator.HasMorePages() {
+		out, err := paginator.NextPage(context.TODO())
+		if err != nil {
+			log.Fatal(err)
+		}
+		for _, image := range out.ImageIds {
+			if *image.ImageTag == *imageTag {
+				fmt.Println("1")
+				return
+			}
 		}
 	}
+
 	fmt.Println("0")
 	return
 }
