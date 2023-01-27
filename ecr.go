@@ -60,7 +60,7 @@ func checkImageExists(cfg *aws.Config, repositoryName *string, imageTag *string)
 			log.Fatal(err)
 		}
 		for _, image := range out.ImageIds {
-			if *image.ImageTag == *imageTag {
+			if image.ImageTag != nil && *image.ImageTag == *imageTag {
 				fmt.Println("1")
 				return
 			}
