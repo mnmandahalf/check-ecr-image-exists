@@ -32,7 +32,7 @@ see [action.yml](https://github.com/mnmandahalf/github-actions-ecr-image-exists/
 
 ## inputs
 
-Following inputs can be used as `step.with` keys
+Following inputs can be used as `steps[*].with` keys
 
 | Name                | Required | Description                                                                                                                                                                                                                |
 | ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
